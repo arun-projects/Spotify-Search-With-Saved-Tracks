@@ -1,4 +1,4 @@
-# Spotify Song Search
+# Spotify Song Search with oAuth
 
 In this lab we will be building a Spotify song search interface with the ability to save and retrieve songs from users' profiles. Here are the requirements for the application:
 
