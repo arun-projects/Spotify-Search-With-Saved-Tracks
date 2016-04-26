@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Spotify API Player</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="style.css" />
+
+	<script   src="http://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+
+	<script src="app.js"></script>
+</head>
+<body>
+
+<div class="container margin-top-20">
+	<div class="pull-right">
+		<a href="https://accounts.spotify.com/authorize?client_id=81e6078613144445bb6410fa1e0bd205&response_type=token&redirect_uri=http://localhost:3000&scope=user-library-read user-library-modify" class="btn btn-info">Login to Spotify</a>
+		<a id="view-saved" href="#" class="btn btn-warning">View Saved Tracks</a>
+	</div>
+
+	<div class="clearfix"></div>
+	<!--Search Form-->
+	<div class="row margin-top-20">
+		<form id="search-form">
+			<div class="col-sm-10">
+				<input type="text" id="search" class="form-control" placeholder="Search for Songs!" />
+			</div>
+			<div class="col-sm-2">
+				<button type="submit" class="btn btn-primary btn-block">Search Songs</button>
+			</div>
+		</form>
+	</div>
+	<!--/Search Form-->
+
+	<div id="song-container">
+		<!--One Song-->
+		<script id="song-search-template" type="text/x-handlebars-template">
+			<div class="row margin-top-20 one-song">
+				<div class="col-sm-3">
+					<img src="{{image}}" class="img-responsive" />
+				</div>
+				<div class="col-sm-9">
+					<h2>{{songName}}</h2>
+					<p>
+						By {{artistName}}
+					</p>
+					<p>
+						Album: {{albumName}}
+					</p>
+					<div class="margin-top-20">
+						<audio controls>
+							<source src="{{previewUrl}}" type="audio/mpeg">
+						</audio>
+					</div>
+					<div class="margin-top-20">
+						<button type="button" class="btn btn-success btn-sm save-track-button" data-id="{{songId}}">
+							<span class="glyphicon glyphicon-ok margin-right-5"></span>
+							Save Track
+						</button>
+					</div>
+				</div>
+			</div>
+		</script>
+		<!--/One Song-->
+
+		<!--One Song-->
+		<script id="saved-tracks-template" type="text/x-handlebars-template">
+			<div class="row margin-top-20 one-song">
+				<div class="col-sm-3">
+					<img src="{{image}}" class="img-responsive" />
+				</div>
+				<div class="col-sm-9">
+					<h2>{{trackName}}</h2>
+					<p>
+						By {{artistName}}
+					</p>
+					<p>
+						Album: {{albumName}}
+					</p>
+					<div class="margin-top-20">
+						<audio controls>
+							<source src="{{previewUrl}}" type="audio/mpeg">
+						</audio>
+					</div>
+					<div class="margin-top-20">
+						<button type="button" class="btn btn-danger btn-sm remove-save-button" data-id="{{trackId}}">
+							<span class="glyphicon glyphicon-remove margin-right-5"></span>
+							Remove Track
+						</button>
+					</div>
+				</div>
+			</div>
+		</script>
+		<!--/One Song-->
+	</div>
+</div>
+
+</body>
+</html>
